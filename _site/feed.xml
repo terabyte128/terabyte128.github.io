@@ -3,10 +3,10 @@
   <channel>
     <title>Sam Wolfson</title>
     <description></description>
-    <link>http://yourdomain.com/</link>
-    <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 13 Apr 2015 12:40:26 -0700</pubDate>
-    <lastBuildDate>Mon, 13 Apr 2015 12:40:26 -0700</lastBuildDate>
+    <link>http://samwolfson.com/</link>
+    <atom:link href="http://samwolfson.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Mon, 13 Apr 2015 13:14:42 -0700</pubDate>
+    <lastBuildDate>Mon, 13 Apr 2015 13:14:42 -0700</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -18,8 +18,8 @@
 &lt;p&gt;If I can remember, I might update this blog periodically with new things that I’m up to. We’ll see.&lt;/p&gt;
 </description>
         <pubDate>Sun, 12 Apr 2015 15:29:01 -0700</pubDate>
-        <link>http://yourdomain.com/jekyll/update/2015/04/12/new-website.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/jekyll/update/2015/04/12/new-website.html</guid>
+        <link>http://samwolfson.com/jekyll/update/2015/04/12/new-website.html</link>
+        <guid isPermaLink="true">http://samwolfson.com/jekyll/update/2015/04/12/new-website.html</guid>
         
         
         <category>jekyll</category>
