@@ -63,5 +63,3 @@ subprocess.call(['git', 'push'])
 
 print("done!")
 {% endhighlight %}
-
-**Hope you find these scripts useful!**
