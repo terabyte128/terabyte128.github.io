@@ -50,7 +50,7 @@ args = sys.argv
 
 if len(args) != 2:
     print("Usage: ./commit_and_push.py [commit message]")
-	exit()
+    exit()
 
 print("adding all files...")
 subprocess.call(['git', 'add', '.'])
