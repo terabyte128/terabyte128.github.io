@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Projects
-permalink: /projects/
+title: Blog
+permalink: /blog/
 ---
 
 <ul class="post-list">

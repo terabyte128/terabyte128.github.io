@@ -63,3 +63,5 @@ subprocess.call(['git', 'push'])
 
 print("done!")
 {% endhighlight %}
+
+These scripts must go in the **root directory** of your Jekyll project or else they will not work correctly. Furthermore, the `commit_and_push.py` file is only intended for use specifically with GitHub pages.
