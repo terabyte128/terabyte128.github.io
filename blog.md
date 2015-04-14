@@ -7,7 +7,7 @@ permalink: /blog/
 <ul class="post-list">
     {% for post in site.posts %}
       <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }} &mdash; <a href="{{ post.url | prepend: site.url }}#disqus_thread"></a></span>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }} &mdash; <a href="{{ post.url | prepend: site.baseurl }}#disqus_thread"></a></span>
 
         <h2>
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
