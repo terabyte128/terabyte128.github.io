@@ -61,6 +61,7 @@ def publish_commit():
 	subprocess.call(['git', 'push'])
 	
 def process_choice(choice):
+	print("\n")
 	if choice == 1:
 		new_page()
 	elif choice == 2:
