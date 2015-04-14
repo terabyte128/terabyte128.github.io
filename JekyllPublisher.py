@@ -76,7 +76,7 @@ def process_choice(choice):
 		print("Selection is invalid.")
 		show_greeting()
 	
-	print("** Process finished!\n")
+	print("\n** Process finished!\n")
 	show_greeting()
 
 show_greeting()
