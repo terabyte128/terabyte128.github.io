@@ -9,13 +9,14 @@ permalink: /blog/
       <li>
         <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}<!-- &mdash; <a href="{{ post.url | prepend: site.baseurl }}#disqus_thread"></a>--></span>
 
-        <h2>
+        <h2 style='margin-bottom:0px;'>
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
 	  </h2>
+	  {{ post.content|trim|truncate:200 }}
   </li>
     {% endfor %}
 </ul>
-
+<!--
 <script type="text/javascript">
 /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
 var disqus_shortname = 'samwolfson'; // required: replace example with your forum shortname
@@ -27,4 +28,4 @@ s.type = 'text/javascript';
 s.src = '//' + disqus_shortname + '.disqus.com/count.js';
 (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
 }());
-</script>
+</script>-->
