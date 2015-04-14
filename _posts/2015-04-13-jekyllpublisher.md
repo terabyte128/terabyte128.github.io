@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "JekyllPublisher"
+title: "Jekyll Publisher"
 date: 2015-04-13 22:53:13
-categories: JekyllPublisher jekyll automate
+categories: publisher jekyll automate
 ---
 
-JekyllPublisher automates a bunch of the mundane tasks inside Jekyll and let you spend more of your time writing content, instead of trying to remember the exact date, time and syntax of every page!
+Jekyll Publisher automates a bunch of the mundane tasks inside Jekyll and let you spend more of your time writing content, instead of trying to remember the exact date, time and syntax of every page!
 
 It's intended to be used with GitHub Pages for committing & pushing updates, but it can create posts and pages as well.
 
