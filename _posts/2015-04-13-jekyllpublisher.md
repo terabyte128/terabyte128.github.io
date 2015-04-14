@@ -7,6 +7,8 @@ categories: JekyllPublisher jekyll automate
 
 JekyllPublisher automates a bunch of the mundane tasks inside Jekyll and let you spend more of your time writing content, instead of trying to remember the exact date, time and syntax of every page!
 
+It's intended to be used with GitHub Pages for committing & pushing updates, but it can create posts and pages as well.
+
 <pre>
 ~ Jekyll Publisher ~
 
