@@ -1,3 +1,28 @@
+---
+layout: post
+title: "JekyllPublisher"
+date: 2015-04-13 22:53:13
+categories: JekyllPublisher jekyll automate
+---
+
+JekyllPublisher automates a bunch of the mundane tasks inside Jekyll and let you spend more of your time writing content, instead of trying to remember the exact date, time and syntax of every page!
+
+<pre>
+~ Jekyll Publisher ~
+
+1. Create new page
+2. Create new blog post
+3. Commit changes
+4. Publish changes
+5. Commit & publish to GitHub
+6. Exit
+
+Enter selection:
+</pre>
+
+Source code is below. It's essentially a wrapper for everything I wrote about in my last post. You can [download it here.](https://raw.githubusercontent.com/terabyte128/terabyte128.github.io/master/JekyllPublisher.py)
+
+{% highlight python %}
 #!/usr/bin/python
 # -*- coding: ascii -*-
 
@@ -86,3 +111,4 @@ def process_choice(choice):
 	show_greeting()
 
 show_greeting()
+{% endhighlight %}
