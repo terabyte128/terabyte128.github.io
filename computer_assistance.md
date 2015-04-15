@@ -12,4 +12,4 @@ I do small, on-the-side computer repair and configuration projects, such as
 - tutorials for computer usage,
 - other miscellanous projects.
 
-For anything more mission-critical, I recommend [Progressive Tech](http://progressivetech.com/){:target="_blank"}. They have amazing, friendly service and a great reputation in the Seattle area.
+For anything more mission-critical, I recommend [Progressive Tech](http://progressivetech.com/){:target="_blank"}. They have excellent, friendly service and a great reputation in the Seattle area.
