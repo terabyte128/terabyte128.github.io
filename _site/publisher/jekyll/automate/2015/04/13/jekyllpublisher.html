@@ -41,7 +41,7 @@
           <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
         </svg>
       </a>
-	  
+
       <div class="trigger">
         
           
@@ -107,7 +107,7 @@ Enter selection:
 
 <p>Source code is below. It’s essentially a wrapper for everything I wrote about in my last post. You can <a href="https://raw.githubusercontent.com/terabyte128/terabyte128.github.io/master/JekyllPublisher.py">download it here.</a></p>
 
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="c">#!/usr/bin/python</span>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c">#!/usr/bin/python</span>
 <span class="c"># -*- coding: ascii -*-</span>
 
 <span class="kn">import</span> <span class="nn">sys</span>
@@ -115,62 +115,62 @@ Enter selection:
 <span class="kn">import</span> <span class="nn">time</span>
 
 <span class="k">def</span> <span class="nf">show_greeting</span><span class="p">():</span>
-	<span class="k">print</span><span class="p">(</span><span class="s">&quot;~ Jekyll Publisher ~</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
-	<span class="k">print</span><span class="p">(</span><span class="s">&quot;1. Create new page&quot;</span><span class="p">)</span>
-	<span class="k">print</span><span class="p">(</span><span class="s">&quot;2. Create new blog post&quot;</span><span class="p">)</span>
-	<span class="k">print</span><span class="p">(</span><span class="s">&quot;3. Commit changes&quot;</span><span class="p">)</span>
-	<span class="k">print</span><span class="p">(</span><span class="s">&quot;4. Publish changes&quot;</span><span class="p">)</span>
-	<span class="k">print</span><span class="p">(</span><span class="s">&quot;5. Commit &amp; publish to GitHub&quot;</span><span class="p">)</span>
-	<span class="k">print</span><span class="p">(</span><span class="s">&quot;6. Exit&quot;</span><span class="p">)</span>
+	<span class="k">print</span><span class="p">(</span><span class="s">"~ Jekyll Publisher ~</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+	<span class="k">print</span><span class="p">(</span><span class="s">"1. Create new page"</span><span class="p">)</span>
+	<span class="k">print</span><span class="p">(</span><span class="s">"2. Create new blog post"</span><span class="p">)</span>
+	<span class="k">print</span><span class="p">(</span><span class="s">"3. Commit changes"</span><span class="p">)</span>
+	<span class="k">print</span><span class="p">(</span><span class="s">"4. Publish changes"</span><span class="p">)</span>
+	<span class="k">print</span><span class="p">(</span><span class="s">"5. Commit &amp; publish to GitHub"</span><span class="p">)</span>
+	<span class="k">print</span><span class="p">(</span><span class="s">"6. Exit"</span><span class="p">)</span>
 
 	<span class="k">try</span><span class="p">:</span>
-		<span class="n">choice</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">Enter selection: &quot;</span><span class="p">))</span>
-	<span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-		<span class="k">print</span><span class="p">(</span><span class="s">&quot;Selection is not an integer.&quot;</span><span class="p">)</span>
+		<span class="n">choice</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">Enter selection: "</span><span class="p">))</span>
+	<span class="k">except</span> <span class="nb">ValueError</span><span class="p">:</span>
+		<span class="k">print</span><span class="p">(</span><span class="s">"Selection is not an integer."</span><span class="p">)</span>
 		<span class="n">show_greeting</span><span class="p">()</span>
 		
 	<span class="n">process_choice</span><span class="p">(</span><span class="n">choice</span><span class="p">)</span>
 	
 <span class="k">def</span> <span class="nf">new_page</span><span class="p">():</span>
-	<span class="n">title</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;Enter a new page name: &quot;</span><span class="p">)</span>
-	<span class="n">filename</span> <span class="o">=</span> <span class="n">title</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">,</span> <span class="s">&quot;_&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">+</span> <span class="s">&quot;.md&quot;</span>
+	<span class="n">title</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">"Enter a new page name: "</span><span class="p">)</span>
+	<span class="n">filename</span> <span class="o">=</span> <span class="n">title</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">" "</span><span class="p">,</span> <span class="s">"_"</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">+</span> <span class="s">".md"</span>
 	
-	<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+	<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span>
 	
-	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;---</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
-	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;layout: page</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;title: &quot;&#39;</span> <span class="o">+</span> <span class="n">title</span> <span class="o">+</span> <span class="s">&#39;&quot;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;permalink: /&#39;</span> <span class="o">+</span> <span class="n">title</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">,</span> <span class="s">&quot;_&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">+</span> <span class="s">&#39;/</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;---</span><span class="se">\n\n</span><span class="s">&#39;</span><span class="p">)</span>
+	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"---</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">'layout: page</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">'title: "'</span> <span class="o">+</span> <span class="n">title</span> <span class="o">+</span> <span class="s">'"</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">'permalink: /'</span> <span class="o">+</span> <span class="n">title</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">" "</span><span class="p">,</span> <span class="s">"_"</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">+</span> <span class="s">'/</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">'---</span><span class="se">\n\n</span><span class="s">'</span><span class="p">)</span>
 	
 	<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">new_blog_post</span><span class="p">():</span>
-	<span class="n">timestr</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&quot;%Y-%m-</span><span class="si">%d</span><span class="s">&quot;</span><span class="p">)</span>
+	<span class="n">timestr</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">"</span><span class="si">%</span><span class="s">Y-</span><span class="si">%</span><span class="s">m-</span><span class="si">%</span><span class="s">d"</span><span class="p">)</span>
 	
-	<span class="n">title</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;Enter a new post title: &quot;</span><span class="p">)</span>
-	<span class="n">filename</span> <span class="o">=</span> <span class="s">&quot;_posts/&quot;</span> <span class="o">+</span> <span class="n">timestr</span> <span class="o">+</span> <span class="s">&quot;-&quot;</span> <span class="o">+</span> <span class="n">title</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">,</span> <span class="s">&quot;-&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">+</span> <span class="s">&quot;.md&quot;</span>
+	<span class="n">title</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">"Enter a new post title: "</span><span class="p">)</span>
+	<span class="n">filename</span> <span class="o">=</span> <span class="s">"_posts/"</span> <span class="o">+</span> <span class="n">timestr</span> <span class="o">+</span> <span class="s">"-"</span> <span class="o">+</span> <span class="n">title</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">" "</span><span class="p">,</span> <span class="s">"-"</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">+</span> <span class="s">".md"</span>
 	
-	<span class="n">datetimestr</span> <span class="o">=</span> <span class="s">&quot;date: &quot;</span> <span class="o">+</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&quot;%Y-%m-</span><span class="si">%d</span><span class="s"> %H:%M:%S&quot;</span><span class="p">)</span>
+	<span class="n">datetimestr</span> <span class="o">=</span> <span class="s">"date: "</span> <span class="o">+</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">"</span><span class="si">%</span><span class="s">Y-</span><span class="si">%</span><span class="s">m-</span><span class="si">%</span><span class="s">d </span><span class="si">%</span><span class="s">H:</span><span class="si">%</span><span class="s">M:</span><span class="si">%</span><span class="s">S"</span><span class="p">)</span>
 	
-	<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+	<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span>
 	
-	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;---</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
-	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;layout: post</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;title: &quot;&#39;</span> <span class="o">+</span> <span class="n">title</span> <span class="o">+</span> <span class="s">&#39;&quot;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">datetimestr</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
-	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;categories: </span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;---</span><span class="se">\n\n</span><span class="s">&#39;</span><span class="p">)</span>
+	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"---</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">'layout: post</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">'title: "'</span> <span class="o">+</span> <span class="n">title</span> <span class="o">+</span> <span class="s">'"</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">datetimestr</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">'categories: </span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+	<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">'---</span><span class="se">\n\n</span><span class="s">'</span><span class="p">)</span>
 	
 	<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 	
 <span class="k">def</span> <span class="nf">make_commit</span><span class="p">():</span>
-	<span class="n">message</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;Enter commit message: &quot;</span><span class="p">)</span>
-	<span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="s">&#39;git&#39;</span><span class="p">,</span> <span class="s">&#39;add&#39;</span><span class="p">,</span> <span class="s">&#39;.&#39;</span><span class="p">])</span>
-	<span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="s">&#39;git&#39;</span><span class="p">,</span> <span class="s">&#39;commit&#39;</span><span class="p">,</span> <span class="s">&#39;-m&#39;</span><span class="p">,</span> <span class="n">message</span><span class="p">])</span>
+	<span class="n">message</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">"Enter commit message: "</span><span class="p">)</span>
+	<span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="s">'git'</span><span class="p">,</span> <span class="s">'add'</span><span class="p">,</span> <span class="s">'.'</span><span class="p">])</span>
+	<span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="s">'git'</span><span class="p">,</span> <span class="s">'commit'</span><span class="p">,</span> <span class="s">'-m'</span><span class="p">,</span> <span class="n">message</span><span class="p">])</span>
 	
 <span class="k">def</span> <span class="nf">publish_commit</span><span class="p">():</span>
-	<span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="s">&#39;git&#39;</span><span class="p">,</span> <span class="s">&#39;push&#39;</span><span class="p">])</span>
+	<span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="s">'git'</span><span class="p">,</span> <span class="s">'push'</span><span class="p">])</span>
 	
 <span class="k">def</span> <span class="nf">process_choice</span><span class="p">(</span><span class="n">choice</span><span class="p">):</span>
 	<span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -185,16 +185,16 @@ Enter selection:
 		<span class="n">make_commit</span><span class="p">()</span>
 		<span class="n">publish_commit</span><span class="p">()</span>
 	<span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
-		<span class="k">print</span><span class="p">(</span><span class="s">&quot;Goodbye!&quot;</span><span class="p">)</span>
+		<span class="k">print</span><span class="p">(</span><span class="s">"Goodbye!"</span><span class="p">)</span>
 		<span class="nb">exit</span><span class="p">()</span>
 	<span class="k">else</span><span class="p">:</span>
-		<span class="k">print</span><span class="p">(</span><span class="s">&quot;Selection is invalid.&quot;</span><span class="p">)</span>
+		<span class="k">print</span><span class="p">(</span><span class="s">"Selection is invalid."</span><span class="p">)</span>
 		<span class="n">show_greeting</span><span class="p">()</span>
 	
-	<span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">** Process finished!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
+	<span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">** Process finished!</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
 	<span class="n">show_greeting</span><span class="p">()</span>
 
-<span class="n">show_greeting</span><span class="p">()</span></code></pre></div>
+<span class="n">show_greeting</span><span class="p">()</span></code></pre></figure>
 
 	<!-- <br><br>
 	  <div id="disqus_thread"></div> -->
@@ -226,7 +226,7 @@ Enter selection:
     <div class="footer-col-wrapper">
       <div class="footer-col  footer-col-1">
         <ul class="contact-list">
-			<li><a href="mailto:samuel.s.wolfson@gmail.com">samuel.s.wolfson@gmail.com</a></li>
+			<li><a href="mailto:wolfson@uw.edu">wolfson@uw.edu</a></li>
         </ul>
       </div>
 

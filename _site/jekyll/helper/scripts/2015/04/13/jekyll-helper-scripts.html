@@ -41,7 +41,7 @@
           <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
         </svg>
       </a>
-	  
+
       <div class="trigger">
         
           
@@ -90,38 +90,38 @@
   <article class="post-content">
     <p>I’ve written a few helper scripts in Python to make using and publishing with Jekyll and GitHub pages easier. The first one creates blog post skeletons with the current date and time, and using a title given as an argument.</p>
 
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="c">#! /usr/bin/python</span>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c">#! /usr/bin/python</span>
 
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">subprocess</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 
-<span class="n">timestr</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&quot;%Y-%m-</span><span class="si">%d</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="n">timestr</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">"</span><span class="si">%</span><span class="s">Y-</span><span class="si">%</span><span class="s">m-</span><span class="si">%</span><span class="s">d"</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Usage: ./create_post.py [page name]&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Usage: ./create_post.py [page name]"</span><span class="p">)</span>
     <span class="nb">exit</span><span class="p">()</span>
 
 <span class="n">title</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
-<span class="n">filename</span> <span class="o">=</span> <span class="s">&quot;_posts/&quot;</span> <span class="o">+</span> <span class="n">timestr</span> <span class="o">+</span> <span class="s">&quot;-&quot;</span> <span class="o">+</span> <span class="n">title</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">,</span> <span class="s">&quot;-&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">+</span> <span class="s">&quot;.md&quot;</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="s">"_posts/"</span> <span class="o">+</span> <span class="n">timestr</span> <span class="o">+</span> <span class="s">"-"</span> <span class="o">+</span> <span class="n">title</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">" "</span><span class="p">,</span> <span class="s">"-"</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">+</span> <span class="s">".md"</span>
 
-<span class="n">datetimestr</span> <span class="o">=</span> <span class="s">&quot;date: &quot;</span> <span class="o">+</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&quot;%Y-%m-</span><span class="si">%d</span><span class="s"> %H:%M:%S&quot;</span><span class="p">)</span>
+<span class="n">datetimestr</span> <span class="o">=</span> <span class="s">"date: "</span> <span class="o">+</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">"</span><span class="si">%</span><span class="s">Y-</span><span class="si">%</span><span class="s">m-</span><span class="si">%</span><span class="s">d </span><span class="si">%</span><span class="s">H:</span><span class="si">%</span><span class="s">M:</span><span class="si">%</span><span class="s">S"</span><span class="p">)</span>
 
-<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span>
 
-<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;---</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
-<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;layout: post</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;title: &quot;&#39;</span> <span class="o">+</span> <span class="n">title</span> <span class="o">+</span> <span class="s">&#39;&quot;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">datetimestr</span> <span class="o">+</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
-<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;categories: </span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;---</span><span class="se">\n\n</span><span class="s">&#39;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"---</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">'layout: post</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">'title: "'</span> <span class="o">+</span> <span class="n">title</span> <span class="o">+</span> <span class="s">'"</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">datetimestr</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">'categories: </span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">'---</span><span class="se">\n\n</span><span class="s">'</span><span class="p">)</span>
 
-<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></code></pre></div>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></code></pre></figure>
 
 <p>The other script allows committing and pushing with one command, which is particularly useful for a project like this, where changes don’t necessarily need as much review as a conventional GitHub project.</p>
 
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="c">#! /usr/bin/python</span>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c">#! /usr/bin/python</span>
 
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">subprocess</span>
@@ -129,21 +129,21 @@
 <span class="n">args</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span>
 
 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Usage: ./commit_and_push.py [commit message]&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Usage: ./commit_and_push.py [commit message]"</span><span class="p">)</span>
     <span class="nb">exit</span><span class="p">()</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s">&quot;adding all files...&quot;</span><span class="p">)</span>
-<span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="s">&#39;git&#39;</span><span class="p">,</span> <span class="s">&#39;add&#39;</span><span class="p">,</span> <span class="s">&#39;.&#39;</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"adding all files..."</span><span class="p">)</span>
+<span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="s">'git'</span><span class="p">,</span> <span class="s">'add'</span><span class="p">,</span> <span class="s">'.'</span><span class="p">])</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s">&quot;committing...&quot;</span><span class="p">)</span>
-<span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="s">&#39;git&#39;</span><span class="p">,</span> <span class="s">&#39;commit&#39;</span><span class="p">,</span> <span class="s">&#39;-m&#39;</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"committing..."</span><span class="p">)</span>
+<span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="s">'git'</span><span class="p">,</span> <span class="s">'commit'</span><span class="p">,</span> <span class="s">'-m'</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s">&quot;pushing...&quot;</span><span class="p">)</span>
-<span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="s">&#39;git&#39;</span><span class="p">,</span> <span class="s">&#39;push&#39;</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"pushing..."</span><span class="p">)</span>
+<span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="s">'git'</span><span class="p">,</span> <span class="s">'push'</span><span class="p">])</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s">&quot;done!&quot;</span><span class="p">)</span></code></pre></div>
+<span class="k">print</span><span class="p">(</span><span class="s">"done!"</span><span class="p">)</span></code></pre></figure>
 
-<p>These scripts must go in the <strong>root directory</strong> of your Jekyll project or else they will not work correctly. Furthermore, the <code>commit_and_push.py</code> file is only intended for use specifically with GitHub pages.</p>
+<p>These scripts must go in the <strong>root directory</strong> of your Jekyll project or else they will not work correctly. Furthermore, the <code class="highlighter-rouge">commit_and_push.py</code> file is only intended for use specifically with GitHub pages.</p>
 
 	<!-- <br><br>
 	  <div id="disqus_thread"></div> -->
@@ -175,7 +175,7 @@
     <div class="footer-col-wrapper">
       <div class="footer-col  footer-col-1">
         <ul class="contact-list">
-			<li><a href="mailto:samuel.s.wolfson@gmail.com">samuel.s.wolfson@gmail.com</a></li>
+			<li><a href="mailto:wolfson@uw.edu">wolfson@uw.edu</a></li>
         </ul>
       </div>
 
