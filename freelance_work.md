@@ -15,3 +15,5 @@ I can help you create a website for yourself or your business, often for a much 
 * [Steven Wolfson MSW](http://stevenwolfsonmsw.com)
 
 Please <a href="/contact_me/">get in touch with me</a> for more information. References available upon request.
+<br>
+You may also <a href="/Samuel_Wolfson_Resume.pdf">view my resume</a>.
