@@ -5,9 +5,28 @@
     <description></description>
     <link>http://samwolfson.com/</link>
     <atom:link href="http://samwolfson.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 14 Mar 2016 16:41:47 -0700</pubDate>
-    <lastBuildDate>Mon, 14 Mar 2016 16:41:47 -0700</lastBuildDate>
+    <pubDate>Tue, 15 Mar 2016 01:05:08 -0700</pubDate>
+    <lastBuildDate>Tue, 15 Mar 2016 01:05:08 -0700</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
+    
+      <item>
+        <title>Automagic Door Project</title>
+        <description>&lt;p&gt;I’m living in a dorm! But unfortunately, sometimes my keys get forgotten (through no fault of my own, obviously).They seem to jump right out of my pocket before I leave the room. So I devised a solution.&lt;/p&gt;
+
+&lt;p&gt;Back in October, I purchased a Raspberry Pi, a bunch of mini servos, and 25 ft of Ethernet cable. I first attempted to use a continuous servo to activate the handle of my dorm room’s door, with limited success. The servo did not have nearly enough torque to consistently pull down the handle. So I bought a stepper motor, 3D printed a mount for it, and attempted to open the door that way. But it still lacked torque. At this point, school began to get harder (and I had mostly stopped forgetting my keys) so I abandoned the project.&lt;/p&gt;
+
+&lt;p&gt;But a few weeks ago, I was poking around and came across the &lt;a href=&quot;http://www.motorola.com/us/consumers/accessories/Motorola-Keylink/keylink.html&quot;&gt;Motorola Keylink&lt;/a&gt;. It was on clearance, so naturally I picked up 2 of them. As it turns out, they’re nearly useless as phone finders when paired with an iPhone; they don’t even work when the app isn’t active. However, they are essentially little Bluetooth pagers – you send them a signal from a phone, and they just beep. It seemed to me that one would work perfectly for relaying a signal to open a door. Furthermore, they would allow me to avoid the significant headache of connecting the system to the University’s local network, and running a secure web server on the Raspberry Pi for activating the door. Taking an entire device out of the mix promised to simplify the project significantly. So I started back at it again, this time planning to only use the stepper, connected to the Keylink and an Arduino. &lt;em&gt;I’m aware that Bluetooth is probably not completely secure, but the Keylink will not offer to pair with new devices if it’s already paired to one, so I figure it’s reasonably secure, at least through obscurity.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;At the same time, I’m trying to learn how to use &lt;a href=&quot;http://www.autodesk.com/products/fusion-360/overview&quot;&gt;Fusion 360&lt;/a&gt; for CAD, which is a huge step up from the designs that I’d previously been making in SketchUp. However, there’s also somewhat of a learning curve, and I’m currently stuck on how to make gears (why are they so complicated?).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/motormount.jpg&quot; alt=&quot;Motor mount in progress&quot; /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Mon, 14 Mar 2016 17:43:54 -0700</pubDate>
+        <link>http://samwolfson.com/2016/03/14/automagic-door-project.html</link>
+        <guid isPermaLink="true">http://samwolfson.com/2016/03/14/automagic-door-project.html</guid>
+        
+        
+      </item>
     
       <item>
         <title>Jekyll Publisher</title>

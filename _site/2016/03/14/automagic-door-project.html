@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Blog</title>
-  <meta name="description" content="">
+  <title>Automagic Door Project</title>
+  <meta name="description" content="BackgroundI’m living in a dorm! But unfortunately, sometimes my keys get forgotten (through no fault of my own, obviously).They seem to jump right out of my ...">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://samwolfson.com/blog/">
+  <link rel="canonical" href="http://samwolfson.com/2016/03/14/automagic-door-project.html">
   <link rel="alternate" type="application/rss+xml" title="Sam Wolfson" href="http://samwolfson.com/feed.xml" />
   
   <script>
@@ -45,7 +45,7 @@
       <div class="trigger">
         
           
-          <a style="font-weight: bolder;" class="page-link" href="/blog/">Blog</a>
+          <a  class="page-link" href="/blog/">Blog</a>
           
         
           
@@ -83,67 +83,43 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Blog</h1>
+    <h1 class="post-title">Automagic Door Project</h1>
+    <p class="post-meta">Mar 14, 2016</p>
   </header>
 
   <article class="post-content">
-    <ul class="post-list">
-    
-      <li>
-        <span class="post-meta">Mar 14, 2016<!-- &mdash; <a href="/2016/03/14/automagic-door-project.html#disqus_thread"></a>--></span>
+    <h4 id="background">Background</h4>
+<p>I’m living in a dorm! But unfortunately, sometimes my keys get forgotten (through no fault of my own, obviously).They seem to jump right out of my pocket before I leave the room. So I devised a solution.</p>
 
-        <h2 style="margin-bottom:0px;">
-          <a class="post-link" href="/2016/03/14/automagic-door-project.html">Automagic Door Project</a>
-	  </h2>
-	  <p>I’m living in a dorm! But unfortunately, sometimes my keys get forgotten (through no fault of my own, obviously).They seem to jump right out of my pocket before I leave the room. So I devised a ...
-  
-    
-      <li>
-        <span class="post-meta">Apr 13, 2015<!-- &mdash; <a href="/publisher/jekyll/automate/2015/04/13/jekyllpublisher.html#disqus_thread"></a>--></span>
+<p>Back in October, I purchased a Raspberry Pi, a bunch of mini servos, and 25 ft of Ethernet cable. I first attempted to use a continuous servo to activate the handle of my dorm room’s door, with limited success. The servo did not have nearly enough torque to consistently pull down the handle. So I bought a stepper motor, 3D printed a mount for it, and attempted to open the door that way. But it still lacked torque. At this point, school began to get harder (and I had mostly stopped forgetting my keys) so I abandoned the project.</p>
 
-        <h2 style="margin-bottom:0px;">
-          <a class="post-link" href="/publisher/jekyll/automate/2015/04/13/jekyllpublisher.html">Jekyll Publisher</a>
-	  </h2>
-	  <p>Jekyll Publisher automates a bunch of the mundane tasks inside Jekyll and let you spend more of your time writing content, instead of trying to remember the exact date, time and syntax of every ...
-  
-    
-      <li>
-        <span class="post-meta">Apr 13, 2015<!-- &mdash; <a href="/jekyll/helper/scripts/2015/04/13/jekyll-helper-scripts.html#disqus_thread"></a>--></span>
+<h4 id="new-developments">New Developments</h4>
+<p>However! A few weeks ago, I was poking around and came across the <a href="http://www.motorola.com/us/consumers/accessories/Motorola-Keylink/keylink.html">Motorola Keylink</a>. It was on clearance, so naturally I picked up 2 of them. As it turns out, they’re nearly useless as phone finders when paired with an iPhone; they don’t even work when the app isn’t active. However, they are essentially little Bluetooth pagers – you send them a signal from a phone, and they just beep. It seemed to me that one would work perfectly for relaying a signal to open a door. Furthermore, they would allow me to avoid the significant headache of connecting the system to the University’s local network, and running a secure web server on the Raspberry Pi for activating the door. Taking an entire device out of the mix promised to simplify the project significantly. So I started back at it again, this time planning to only use the stepper, connected to the Keylink and an Arduino. <em>I’m aware that Bluetooth is probably not completely secure, but the Keylink will not offer to pair with new devices if it’s already paired to one, so I figure it’s reasonably secure, at least through obscurity.</em></p>
 
-        <h2 style="margin-bottom:0px;">
-          <a class="post-link" href="/jekyll/helper/scripts/2015/04/13/jekyll-helper-scripts.html">Jekyll helper scripts</a>
-	  </h2>
-	  <p>I’ve written a few helper scripts in Python to make using and publishing with Jekyll and GitHub pages easier. The first one creates blog post skeletons with the current date and time, and using ...
-  
-    
-      <li>
-        <span class="post-meta">Apr 12, 2015<!-- &mdash; <a href="/jekyll/update/2015/04/12/new-website.html#disqus_thread"></a>--></span>
+<h4 id="gears----how-do-they-work">Gears – how do they work??</h4>
+<p>At the same time, I’m trying to learn how to use <a href="http://www.autodesk.com/products/fusion-360/overview">Fusion 360</a> for CAD, which is a huge step up from the designs that I’d previously been making in SketchUp. However, there’s also somewhat of a learning curve, and I’m currently stuck on how to make gears (why are they so complicated?).</p>
 
-        <h2 style="margin-bottom:0px;">
-          <a class="post-link" href="/jekyll/update/2015/04/12/new-website.html">Brand-new website!</a>
-	  </h2>
-	  <p>Welcome to my new website! I’ve completely redone it using <a href="http://jekyllrb.com/">Jekyll</a> and <a href="https://pages.github.com/">GitHub Pages</a>.</p>
+<p><img src="/img/motormount.png" alt="Motor mount in progress" />
+<em>The current state of the motor mount</em></p>
 
-<p>Recently, I’ve been playing...
-  
-    
+<p>As soon as I can figure out how gears work, we’ll be off to the races! I’m hoping to do so within the next two weeks, since I’ll be on break from University.</p>
 
-<!--
-<script type="text/javascript">
-/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-var disqus_shortname = 'samwolfson'; // required: replace example with your forum shortname
-
-/* * * DON'T EDIT BELOW THIS LINE * * */
-(function () {
-var s = document.createElement('script'); s.async = true;
-s.type = 'text/javascript';
-s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-}());
-</script>-->
-</p></li></p></li></p></li></p></li></ul>
-
+	<!-- <br><br>
+	  <div id="disqus_thread"></div> -->
   </article>
+  
+  <!--<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'samwolfson';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>-->
 
 </div>
 
