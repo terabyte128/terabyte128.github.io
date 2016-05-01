@@ -7,6 +7,7 @@ categories:
 
 <attr title="This joke isn't just here for its own sake; for some reason, everything craps out if my static site generator attempts to format LaTeX in the post list page.">Ah, floating point: not just a swimming pool full of numbers!</attr>
 
+
 You may or may not be familiar with the somewhat convoluted way that computers deal with non-integer numbers (for instance, $$1.25$$, or $$6.022 * 10^{23}$$). I'm not sure how you really would have ended up here without having searched for something like "floating point," so you probably already know at least a bit about how it works. But either way, I have a test on Monday, so I'm going to attempt to describe this standard as clearly as possible. (And in excruciating detail, woo!)
 
 ### Some background
