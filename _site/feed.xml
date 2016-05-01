@@ -5,19 +5,140 @@
     <description></description>
     <link>http://samwolfson.com/</link>
     <atom:link href="http://samwolfson.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 15 Mar 2016 11:53:00 -0700</pubDate>
-    <lastBuildDate>Tue, 15 Mar 2016 11:53:00 -0700</lastBuildDate>
-    <generator>Jekyll v3.0.1</generator>
+    <pubDate>Sun, 01 May 2016 01:07:30 -0700</pubDate>
+    <lastBuildDate>Sun, 01 May 2016 01:07:30 -0700</lastBuildDate>
+    <generator>Jekyll v3.1.2</generator>
+    
+      <item>
+        <title>Let&#39;s talk about floating point</title>
+        <description>&lt;p&gt;Ah, floating point: not just a swimming pool full of numbers!&lt;/p&gt;
+
+&lt;p&gt;You may or may not be familiar with the somewhat convoluted way that computers deal with non-integer numbers (for instance, &lt;script type=&quot;math/tex&quot;&gt;1.25&lt;/script&gt;, or &lt;script type=&quot;math/tex&quot;&gt;6.022 * 10^{23}&lt;/script&gt;). I’m not sure how you really would have ended up here without having searched for something like “floating point,” so you probably already know at least a bit about how it works. But either way, I have a test on Monday, so I’m going to attempt to describe this standard as clearly as possible. (And in excruciating detail, woo!)&lt;/p&gt;
+
+&lt;h3 id=&quot;some-background&quot;&gt;Some background&lt;/h3&gt;
+
+&lt;p&gt;Computers really don’t have much to work with. Remember, everything eventually ends up as just 1’s and 0’s. This can make it difficult to represent things like, for instance, decimal points. This led to some, uh, &lt;em&gt;interesting&lt;/em&gt; compromises with number representation.&lt;/p&gt;
+
+&lt;p&gt;The most obvious way to get around this lack of a decimal point is by just arbitrarily choosing a spot for it within a number. Suppose I wanted to represent the 16-bit binary number &lt;script type=&quot;math/tex&quot;&gt;10101101.01010011&lt;/script&gt; in computer memory. I could just say that the decimal point will always be in the middle (i.e. with 8 bits on either side), and store it as &lt;script type=&quot;math/tex&quot;&gt;1010110101010011&lt;/script&gt; with the implied point.&lt;/p&gt;
+
+&lt;p&gt;But it turns out that this doesn’t work so well if, sticking with the 16-bit number example, I want to represent something with more than 8 bits of precision on either side. Using this fixed-point method, I can’t represent any numbers larger than &lt;script type=&quot;math/tex&quot;&gt;256&lt;/script&gt; (&lt;script type=&quot;math/tex&quot;&gt;2^8&lt;/script&gt;), or anything more precise than &lt;script type=&quot;math/tex&quot;&gt;\frac{1}{256}&lt;/script&gt; (&lt;script type=&quot;math/tex&quot;&gt;2^{-8}&lt;/script&gt;). &lt;em&gt;And that’s not even considering how to represent negative numbers&lt;/em&gt;, which would take away even more precious bits. There must be a better way.&lt;/p&gt;
+
+&lt;h3 id=&quot;whatever-floats-your-boat&quot;&gt;Whatever floats your boat&lt;/h3&gt;
+
+&lt;p&gt;And as it turns out, there is one! Aside from some very specific instances where you know exactly what kind of numbers you’re dealing with, fixed-point turns out to not be all that useful. And everyone seemingly had their own unique way to deal with non-integer numbers, non of which were, of course, compatible. So in 1985, the &lt;strong&gt;IEEE 754&lt;/strong&gt; standard was established to bring order to a scattered universe. And it might seem complicated at first, but bear with me for a bit, because it’s really not as complex as it seems.&lt;/p&gt;
+
+&lt;h3 id=&quot;taking-a-cue-from-science&quot;&gt;Taking a cue from science&lt;/h3&gt;
+
+&lt;p&gt;You’re probably familiar with scientific notation. It’s much handier to write &lt;script type=&quot;math/tex&quot;&gt;6.022*10^{23}&lt;/script&gt; than it is to write &lt;script type=&quot;math/tex&quot;&gt;602200000000000000000000&lt;/script&gt;. They really mean the same thing, but in the first form, you can just see the number of digits that will be there after the decimal point, as opposed to actually needing to write them all down.&lt;/p&gt;
+
+&lt;p&gt;Floating point works in essentially the same way, except computers don’t think in base 10, preferring instead to stick to binary. But let’s start with a decimal example. I want to represent &lt;script type=&quot;math/tex&quot;&gt;125&lt;/script&gt; in scientific notation. Well that’s pretty easy, just move the decimal place over twice to the left, and then multiply by &lt;script type=&quot;math/tex&quot;&gt;100&lt;/script&gt; (or &lt;script type=&quot;math/tex&quot;&gt;10^2&lt;/script&gt;). Then I have:&lt;/p&gt;
+
+&lt;p&gt;\begin{align}
+1.25 * 10^2
+\end{align}&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Nice.&lt;/em&gt; Turns out this also works in binary. First, convert &lt;script type=&quot;math/tex&quot;&gt;125&lt;/script&gt; to base 2: &lt;script type=&quot;math/tex&quot;&gt;1111101&lt;/script&gt;. I’d like to end up with only a single number, &lt;script type=&quot;math/tex&quot;&gt;1 \le n \lt 10&lt;/script&gt;, before the point. But remember, unlike decimal, the only number in binary for which this works is &lt;script type=&quot;math/tex&quot;&gt;1&lt;/script&gt; itself! &lt;script type=&quot;math/tex&quot;&gt;1_2 + 1_2 = 10_2&lt;/script&gt;. So that makes it pretty easy. How many times will I have to move the point over in &lt;script type=&quot;math/tex&quot;&gt;1111101&lt;/script&gt; to end up with just a &lt;script type=&quot;math/tex&quot;&gt;1&lt;/script&gt; in front? Turns out it’s &lt;script type=&quot;math/tex&quot;&gt;6_{10} = 110_2&lt;/script&gt; times. So I end up with:&lt;/p&gt;
+
+&lt;p&gt;\begin{align}
+1.111101 * 10^{110}
+\end{align}&lt;/p&gt;
+
+&lt;p&gt;But &lt;strong&gt;watch out!&lt;/strong&gt; There’s a subtle but important difference between this number in scientific notation and the one above it. The &lt;script type=&quot;math/tex&quot;&gt;10^{110}&lt;/script&gt; here, remember, is actually in base 2, and so each time I move the point over once, I’m multiplying by a power of 2, &lt;em&gt;not&lt;/em&gt; a power of 10 as above.&lt;/p&gt;
+
+&lt;p&gt;Let’s do another example. Suppose I want to represent &lt;script type=&quot;math/tex&quot;&gt;16.25&lt;/script&gt; in scientific notation, base-2. First I’ll convert it into base-2 and leave the point as it is: &lt;script type=&quot;math/tex&quot;&gt;10000.01&lt;/script&gt;. I’ll just move the point over to the left &lt;script type=&quot;math/tex&quot;&gt;4_{10} = 100_2&lt;/script&gt; places, and end up with:&lt;/p&gt;
+
+&lt;p&gt;\begin{align}
+1.000001 * 10^{100}
+\end{align}&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Bada bing, bada boom.&lt;/em&gt; This isn’t so bad. That is, essentially, how computers deal with numbers like these – with a couple of small twists.&lt;/p&gt;
+
+&lt;h3 id=&quot;all-together-now&quot;&gt;All together now&lt;/h3&gt;
+
+&lt;p&gt;IEEE 754 specifies that certain parts of a floating-point &lt;em&gt;word&lt;/em&gt; (that’s just a fancy term for a specified number of bits) are allocated to specific areas of a floating-point number. There are 3 pieces (remember this is in binary, so we only have &lt;script type=&quot;math/tex&quot;&gt;0&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;1&lt;/script&gt;):&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The &lt;strong&gt;sign bit&lt;/strong&gt;. We haven’t talked about this before, but it’s pretty much exactly what you’d expect. Remember, we still need a way to tell if a number is positive or negative. If the sign bit is &lt;script type=&quot;math/tex&quot;&gt;0&lt;/script&gt;, the number is positive. If the sign bit is &lt;script type=&quot;math/tex&quot;&gt;1&lt;/script&gt;, the number is negative. That’s all &lt;a href=&quot;#&quot; title=&quot;Except this introduces a weird issue where you can have positive and negative 0, but let&#39;s not worry about that for now.&quot;&gt;(mostly)&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;The &lt;strong&gt;mantissa&lt;/strong&gt;, otherwise known as the &lt;strong&gt;significand&lt;/strong&gt;. This sounds weird, but it’s really just the original number with the point moved over appropriately. However, since in binary the digit before the point &lt;em&gt;must&lt;/em&gt; be a one, we can just get rid of the most significant bit completely and implicitly say that we know it’s still there.&lt;/li&gt;
+  &lt;li&gt;The &lt;strong&gt;exponent&lt;/strong&gt;, which is simply the number by which we multiply the mantissa to arrive back at the original value.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;All three of these pieces then just get squashed together into a certain size word – 32 bits for a float, and 64 bits for a double.&lt;/p&gt;
+
+&lt;p&gt;Let’s do this the best way: with another &lt;em&gt;exciting example.&lt;/em&gt; Suppose I have a number, &lt;script type=&quot;math/tex&quot;&gt;26.5&lt;/script&gt;. That’s a nice-sounding number. I’d like to represent it as a 32-bit floating-point number. First, I’ll convert it to binary: &lt;script type=&quot;math/tex&quot;&gt;11010.1&lt;/script&gt;. Now, I’ll move the point over &lt;script type=&quot;math/tex&quot;&gt;4_{10} = 100_2&lt;/script&gt; times to the left and end up with:&lt;/p&gt;
+
+&lt;p&gt;\begin{align}
+1.10101 * 10^{100}
+\end{align}&lt;/p&gt;
+
+&lt;p&gt;For a normal 32-bit &lt;code class=&quot;highlighter-rouge&quot;&gt;float&lt;/code&gt;, the pieces are allocated the following number of bits:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Sign Bit: 1 bit&lt;/li&gt;
+  &lt;li&gt;Exponent: 8 bits&lt;/li&gt;
+  &lt;li&gt;Mantissa: 23 bits&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Plenty of room for our small number. Let’s see how it all goes together:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Sign bit: This one’s easy. The number is positive, so it’s just &lt;script type=&quot;math/tex&quot;&gt;0&lt;/script&gt;.&lt;/li&gt;
+  &lt;li&gt;Exponent: A bit more difficult, and this is a good time to bring up the idea of &lt;em&gt;bias&lt;/em&gt;. Ideally we’d like to be able to multiply by negative powers of 2 as well as positive powers. This allows storage of really precise small numbers as well as really large numbers. But to do this, it will be necessary to have some way to represent a negative sign.&lt;br /&gt;
+The solution was to add a bias to the exponent, so that instead of only representing numbers from &lt;script type=&quot;math/tex&quot;&gt;0&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;2^n&lt;/script&gt;, where &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; is the number of bits in the exponent, we can give up half the positive numbers to represent negative exponents as well. With an 8-bit exponent, the bias is &lt;script type=&quot;math/tex&quot;&gt;127_{10}&lt;/script&gt;, or &lt;script type=&quot;math/tex&quot;&gt;01111111_2&lt;/script&gt;. Great. So that means that the final exponent for the number above will be &lt;script type=&quot;math/tex&quot;&gt;100 + 01111111 = 10000011&lt;/script&gt;.&lt;/li&gt;
+  &lt;li&gt;Mantissa: Exactly as shown above, except we just drop the leading 1 since it’ll always be there, and end up with &lt;script type=&quot;math/tex&quot;&gt;10101&lt;/script&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Then just pad the right side of the mantissa with zeroes (since the numbers are assumed to come right after the implied point, and are therefore “most significant”), and Bob’s your uncle:&lt;/p&gt;
+
+&lt;p&gt;\begin{align}
+0\ 10000011\ 10101000000000000000000
+\end{align}&lt;/p&gt;
+
+&lt;h3 id=&quot;a-few-notes&quot;&gt;A few notes&lt;/h3&gt;
+
+&lt;p&gt;Some numbers can’t be represented exactly in base-2, and computers aren’t that great at inference, so you may get weird behavior when trying to use some floating-point numbers:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span class=&quot;n&quot;&gt;swift&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.1&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;R0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Double&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.20000000000000001&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This is because &lt;script type=&quot;math/tex&quot;&gt;0.1&lt;/script&gt; in binary is an irrational number &lt;script type=&quot;math/tex&quot;&gt;0.000110011001100110011...&lt;/script&gt;, and eventually the computer will run out of bits when trying to precisely do arithmetic with it and have to round somewhere, causing unexpected output.&lt;/p&gt;
+
+&lt;h3 id=&quot;and-some-special-cases&quot;&gt;And some special cases&lt;/h3&gt;
+
+&lt;p&gt;There are a few numbers in floating-point representation that mean special things:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;All bits except sign bit are &lt;script type=&quot;math/tex&quot;&gt;0&lt;/script&gt;: represents &lt;script type=&quot;math/tex&quot;&gt;0&lt;/script&gt;. The sign bit can be either &lt;script type=&quot;math/tex&quot;&gt;1&lt;/script&gt; or &lt;script type=&quot;math/tex&quot;&gt;0&lt;/script&gt;, meaning that technically floating point can have both &lt;script type=&quot;math/tex&quot;&gt;+0&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;-0&lt;/script&gt;, but they should evaluate to equal.&lt;/li&gt;
+  &lt;li&gt;If the exponent is all 1’s, and the mantissa is all 0’s, then the number represents &lt;script type=&quot;math/tex&quot;&gt;\infty&lt;/script&gt;. Depending on the sign bit, this can be either &lt;script type=&quot;math/tex&quot;&gt;+\infty&lt;/script&gt; or &lt;script type=&quot;math/tex&quot;&gt;-\infty&lt;/script&gt;.&lt;/li&gt;
+  &lt;li&gt;If the exponent is all 1’s, and the mantissa is &lt;em&gt;not&lt;/em&gt; all 0’s, then the number represents &lt;code class=&quot;highlighter-rouge&quot;&gt;NaN&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h3&gt;
+
+&lt;p&gt;Well, if you’re still with me at this point, hopefully I’ve helped you out a bit along the way. If you found this information helpful, or have more questions, feel free to &lt;a href=&quot;/contact_me&quot;&gt;shoot me an email&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I used &lt;a href=&quot;https://www.mathjax.org&quot;&gt;MathJax&lt;/a&gt; to embed &lt;script type=&quot;math/tex&quot;&gt;\LaTeX&lt;/script&gt; into this webpage, in case you were curious :)&lt;/p&gt;
+
+&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;/script&gt;
+
+</description>
+        <pubDate>Sat, 30 Apr 2016 15:15:49 -0700</pubDate>
+        <link>http://samwolfson.com/2016/04/30/lets-talk-about-floating-point.html</link>
+        <guid isPermaLink="true">http://samwolfson.com/2016/04/30/lets-talk-about-floating-point.html</guid>
+        
+        
+      </item>
     
       <item>
         <title>Automagic Door Project</title>
         <description>&lt;h4 id=&quot;background&quot;&gt;Background&lt;/h4&gt;
-&lt;p&gt;I’m living in a dorm! But unfortunately, sometimes my keys get forgotten (through no fault of my own, obviously).They seem to jump right out of my pocket before I leave the room. So I devised a solution.&lt;/p&gt;
+&lt;p&gt;I’m living in a dorm! But unfortunately, sometimes my keys get forgotten (through no fault of my own, obviously). They seem to jump right out of my pocket before I leave the room. So I devised a solution.&lt;/p&gt;
 
 &lt;p&gt;Back in October, I purchased a Raspberry Pi, a bunch of mini servos, and 25 ft of Ethernet cable. I first attempted to use a continuous servo to activate the handle of my dorm room’s door, with limited success. The servo did not have nearly enough torque to consistently pull down the handle. So I bought a stepper motor, 3D printed a mount for it, and attempted to open the door that way. But it still lacked torque. At this point, school began to get harder (and I had mostly stopped forgetting my keys) so I abandoned the project.&lt;/p&gt;
 
 &lt;h4 id=&quot;new-developments&quot;&gt;New Developments&lt;/h4&gt;
-&lt;p&gt;However! A few weeks ago, I was poking around and came across the &lt;a href=&quot;http://www.motorola.com/us/consumers/accessories/Motorola-Keylink/keylink.html&quot;&gt;Motorola Keylink&lt;/a&gt;. It was on clearance, so naturally I picked up 2 of them. As it turns out, they’re nearly useless as phone finders when paired with an iPhone; they don’t even work when the app isn’t active. However, they are essentially little Bluetooth pagers – you send them a signal from a phone, and they just beep. It seemed to me that one would work perfectly for relaying a signal to open a door. Furthermore, they would allow me to avoid the significant headache of connecting the system to the University’s local network, and running a secure web server on the Raspberry Pi for activating the door. Taking an entire device out of the mix promised to simplify the project significantly. So I started back at it again, this time planning to only use the stepper, connected to the Keylink and an Arduino. &lt;em&gt;I’m aware that Bluetooth is probably not completely secure, but the Keylink will not offer to pair with new devices if it’s already paired to one, so I figure it’s reasonably secure, at least through obscurity.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;However! A few weeks ago, I was poking around and came across the &lt;a href=&quot;http://www.motorola.com/us/consumers/accessories/Motorola-Keylink/keylink.html&quot;&gt;Motorola Keylink&lt;/a&gt;. It was on clearance, so naturally I picked up 2 of them. As it turns out, they’re nearly useless as phone finders when paired with an iPhone; they don’t even work when the app isn’t active. However, they are essentially little Bluetooth pagers – you send them a signal from a phone, and they beep. It seemed to me that one would work perfectly for relaying a signal to open a door. Furthermore, it would allow me to avoid the significant headache of connecting the system to the University’s local network, and running a secure web server on the Raspberry Pi for activating the door. Taking an entire device out of the mix promised to simplify the project significantly. So I started back at it again, this time planning to only use the stepper, connected to the Keylink and an Arduino. &lt;em&gt;I’m aware that Bluetooth is probably not completely secure, but the Keylink will not offer to pair with new devices if it’s already paired to one, so I figure it’s reasonably secure, at least through obscurity.&lt;/em&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;gears----how-do-they-work&quot;&gt;Gears – how do they work??&lt;/h4&gt;
 &lt;p&gt;At the same time, I’m trying to learn how to use &lt;a href=&quot;http://www.autodesk.com/products/fusion-360/overview&quot;&gt;Fusion 360&lt;/a&gt; for CAD, which is a huge step up from the designs that I’d previously been making in SketchUp. However, there’s also somewhat of a learning curve, and I’m currently stuck on how to make gears (why are they so complicated?).&lt;/p&gt;

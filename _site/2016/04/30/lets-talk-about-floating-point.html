@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Let's talk about floating point</title>
+  <meta name="description" content="Ah, floating point: not just a swimming pool full of numbers!">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://samwolfson.com/2016/04/30/lets-talk-about-floating-point.html">
+  <link rel="alternate" type="application/rss+xml" title="Sam Wolfson" href="http://samwolfson.com/feed.xml" />
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-42267655-1', 'samwolfson.com');
+  ga('send', 'pageview');
+  </script>
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a  class="site-title" href="/">Sam Wolfson</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+          <a  class="page-link" href="/blog/">Blog</a>
+          
+        
+          
+        
+          
+          <a  class="page-link" href="/freelance_work/">Freelance Work</a>
+          
+        
+          
+        
+          
+          <a  class="page-link" href="/projects/">Projects</a>
+          
+        
+          
+        
+          
+          <a  class="page-link" href="/misc/">Miscellaneous</a>
+          
+        
+          
+          <a  class="page-link" href="/contact_me/">Contact Me</a>
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Let's talk about floating point</h1>
+    <p class="post-meta">Apr 30, 2016</p>
+  </header>
+
+  <article class="post-content">
+    <p>Ah, floating point: not just a swimming pool full of numbers!</p>
+
+<p>You may or may not be familiar with the somewhat convoluted way that computers deal with non-integer numbers (for instance, <script type="math/tex">1.25</script>, or <script type="math/tex">6.022 * 10^{23}</script>). I’m not sure how you really would have ended up here without having searched for something like “floating point,” so you probably already know at least a bit about how it works. But either way, I have a test on Monday, so I’m going to attempt to describe this standard as clearly as possible. (And in excruciating detail, woo!)</p>
+
+<h3 id="some-background">Some background</h3>
+
+<p>Computers really don’t have much to work with. Remember, everything eventually ends up as just 1’s and 0’s. This can make it difficult to represent things like, for instance, decimal points. This led to some, uh, <em>interesting</em> compromises with number representation.</p>
+
+<p>The most obvious way to get around this lack of a decimal point is by just arbitrarily choosing a spot for it within a number. Suppose I wanted to represent the 16-bit binary number <script type="math/tex">10101101.01010011</script> in computer memory. I could just say that the decimal point will always be in the middle (i.e. with 8 bits on either side), and store it as <script type="math/tex">1010110101010011</script> with the implied point.</p>
+
+<p>But it turns out that this doesn’t work so well if, sticking with the 16-bit number example, I want to represent something with more than 8 bits of precision on either side. Using this fixed-point method, I can’t represent any numbers larger than <script type="math/tex">256</script> (<script type="math/tex">2^8</script>), or anything more precise than <script type="math/tex">\frac{1}{256}</script> (<script type="math/tex">2^{-8}</script>). <em>And that’s not even considering how to represent negative numbers</em>, which would take away even more precious bits. There must be a better way.</p>
+
+<h3 id="whatever-floats-your-boat">Whatever floats your boat</h3>
+
+<p>And as it turns out, there is one! Aside from some very specific instances where you know exactly what kind of numbers you’re dealing with, fixed-point turns out to not be all that useful. And everyone seemingly had their own unique way to deal with non-integer numbers, non of which were, of course, compatible. So in 1985, the <strong>IEEE 754</strong> standard was established to bring order to a scattered universe. And it might seem complicated at first, but bear with me for a bit, because it’s really not as complex as it seems.</p>
+
+<h3 id="taking-a-cue-from-science">Taking a cue from science</h3>
+
+<p>You’re probably familiar with scientific notation. It’s much handier to write <script type="math/tex">6.022*10^{23}</script> than it is to write <script type="math/tex">602200000000000000000000</script>. They really mean the same thing, but in the first form, you can just see the number of digits that will be there after the decimal point, as opposed to actually needing to write them all down.</p>
+
+<p>Floating point works in essentially the same way, except computers don’t think in base 10, preferring instead to stick to binary. But let’s start with a decimal example. I want to represent <script type="math/tex">125</script> in scientific notation. Well that’s pretty easy, just move the decimal place over twice to the left, and then multiply by <script type="math/tex">100</script> (or <script type="math/tex">10^2</script>). Then I have:</p>
+
+<p>\begin{align}
+1.25 * 10^2
+\end{align}</p>
+
+<p><em>Nice.</em> Turns out this also works in binary. First, convert <script type="math/tex">125</script> to base 2: <script type="math/tex">1111101</script>. I’d like to end up with only a single number, <script type="math/tex">1 \le n \lt 10</script>, before the point. But remember, unlike decimal, the only number in binary for which this works is <script type="math/tex">1</script> itself! <script type="math/tex">1_2 + 1_2 = 10_2</script>. So that makes it pretty easy. How many times will I have to move the point over in <script type="math/tex">1111101</script> to end up with just a <script type="math/tex">1</script> in front? Turns out it’s <script type="math/tex">6_{10} = 110_2</script> times. So I end up with:</p>
+
+<p>\begin{align}
+1.111101 * 10^{110}
+\end{align}</p>
+
+<p>But <strong>watch out!</strong> There’s a subtle but important difference between this number in scientific notation and the one above it. The <script type="math/tex">10^{110}</script> here, remember, is actually in base 2, and so each time I move the point over once, I’m multiplying by a power of 2, <em>not</em> a power of 10 as above.</p>
+
+<p>Let’s do another example. Suppose I want to represent <script type="math/tex">16.25</script> in scientific notation, base-2. First I’ll convert it into base-2 and leave the point as it is: <script type="math/tex">10000.01</script>. I’ll just move the point over to the left <script type="math/tex">4_{10} = 100_2</script> places, and end up with:</p>
+
+<p>\begin{align}
+1.000001 * 10^{100}
+\end{align}</p>
+
+<p><em>Bada bing, bada boom.</em> This isn’t so bad. That is, essentially, how computers deal with numbers like these – with a couple of small twists.</p>
+
+<h3 id="all-together-now">All together now</h3>
+
+<p>IEEE 754 specifies that certain parts of a floating-point <em>word</em> (that’s just a fancy term for a specified number of bits) are allocated to specific areas of a floating-point number. There are 3 pieces (remember this is in binary, so we only have <script type="math/tex">0</script> and <script type="math/tex">1</script>):</p>
+
+<ul>
+  <li>The <strong>sign bit</strong>. We haven’t talked about this before, but it’s pretty much exactly what you’d expect. Remember, we still need a way to tell if a number is positive or negative. If the sign bit is <script type="math/tex">0</script>, the number is positive. If the sign bit is <script type="math/tex">1</script>, the number is negative. That’s all <a href="#" title="Except this introduces a weird issue where you can have positive and negative 0, but let's not worry about that for now.">(mostly)</a>.</li>
+  <li>The <strong>mantissa</strong>, otherwise known as the <strong>significand</strong>. This sounds weird, but it’s really just the original number with the point moved over appropriately. However, since in binary the digit before the point <em>must</em> be a one, we can just get rid of the most significant bit completely and implicitly say that we know it’s still there.</li>
+  <li>The <strong>exponent</strong>, which is simply the number by which we multiply the mantissa to arrive back at the original value.</li>
+</ul>
+
+<p>All three of these pieces then just get squashed together into a certain size word – 32 bits for a float, and 64 bits for a double.</p>
+
+<p>Let’s do this the best way: with another <em>exciting example.</em> Suppose I have a number, <script type="math/tex">26.5</script>. That’s a nice-sounding number. I’d like to represent it as a 32-bit floating-point number. First, I’ll convert it to binary: <script type="math/tex">11010.1</script>. Now, I’ll move the point over <script type="math/tex">4_{10} = 100_2</script> times to the left and end up with:</p>
+
+<p>\begin{align}
+1.10101 * 10^{100}
+\end{align}</p>
+
+<p>For a normal 32-bit <code class="highlighter-rouge">float</code>, the pieces are allocated the following number of bits:</p>
+
+<ul>
+  <li>Sign Bit: 1 bit</li>
+  <li>Exponent: 8 bits</li>
+  <li>Mantissa: 23 bits</li>
+</ul>
+
+<p>Plenty of room for our small number. Let’s see how it all goes together:</p>
+
+<ul>
+  <li>Sign bit: This one’s easy. The number is positive, so it’s just <script type="math/tex">0</script>.</li>
+  <li>Exponent: A bit more difficult, and this is a good time to bring up the idea of <em>bias</em>. Ideally we’d like to be able to multiply by negative powers of 2 as well as positive powers. This allows storage of really precise small numbers as well as really large numbers. But to do this, it will be necessary to have some way to represent a negative sign.<br />
+The solution was to add a bias to the exponent, so that instead of only representing numbers from <script type="math/tex">0</script> to <script type="math/tex">2^n</script>, where <script type="math/tex">n</script> is the number of bits in the exponent, we can give up half the positive numbers to represent negative exponents as well. With an 8-bit exponent, the bias is <script type="math/tex">127_{10}</script>, or <script type="math/tex">01111111_2</script>. Great. So that means that the final exponent for the number above will be <script type="math/tex">100 + 01111111 = 10000011</script>.</li>
+  <li>Mantissa: Exactly as shown above, except we just drop the leading 1 since it’ll always be there, and end up with <script type="math/tex">10101</script>.</li>
+</ul>
+
+<p>Then just pad the right side of the mantissa with zeroes (since the numbers are assumed to come right after the implied point, and are therefore “most significant”), and Bob’s your uncle:</p>
+
+<p>\begin{align}
+0\ 10000011\ 10101000000000000000000
+\end{align}</p>
+
+<h3 id="a-few-notes">A few notes</h3>
+
+<p>Some numbers can’t be represented exactly in base-2, and computers aren’t that great at inference, so you may get weird behavior when trying to use some floating-point numbers:</p>
+
+<figure class="highlight"><pre><code class="language-swift" data-lang="swift"><span class="n">swift</span><span class="o">&gt;</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.1</span>
+<span class="err">$</span><span class="kt">R0</span><span class="p">:</span> <span class="kt">Double</span> <span class="o">=</span> <span class="mf">0.20000000000000001</span></code></pre></figure>
+
+<p>This is because <script type="math/tex">0.1</script> in binary is an irrational number <script type="math/tex">0.000110011001100110011...</script>, and eventually the computer will run out of bits when trying to precisely do arithmetic with it and have to round somewhere, causing unexpected output.</p>
+
+<h3 id="and-some-special-cases">And some special cases</h3>
+
+<p>There are a few numbers in floating-point representation that mean special things:</p>
+
+<ul>
+  <li>All bits except sign bit are <script type="math/tex">0</script>: represents <script type="math/tex">0</script>. The sign bit can be either <script type="math/tex">1</script> or <script type="math/tex">0</script>, meaning that technically floating point can have both <script type="math/tex">+0</script> and <script type="math/tex">-0</script>, but they should evaluate to equal.</li>
+  <li>If the exponent is all 1’s, and the mantissa is all 0’s, then the number represents <script type="math/tex">\infty</script>. Depending on the sign bit, this can be either <script type="math/tex">+\infty</script> or <script type="math/tex">-\infty</script>.</li>
+  <li>If the exponent is all 1’s, and the mantissa is <em>not</em> all 0’s, then the number represents <code class="highlighter-rouge">NaN</code>.</li>
+</ul>
+
+<h3 id="wrap-up">Wrap-up</h3>
+
+<p>Well, if you’re still with me at this point, hopefully I’ve helped you out a bit along the way. If you found this information helpful, or have more questions, feel free to <a href="/contact_me">shoot me an email</a>.</p>
+
+<p>I used <a href="https://www.mathjax.org">MathJax</a> to embed <script type="math/tex">\LaTeX</script> into this webpage, in case you were curious :)</p>
+
+<script type="text/javascript" async="" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+	<!-- <br><br>
+	  <div id="disqus_thread"></div> -->
+  </article>
+  
+  <!--<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'samwolfson';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>-->
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+	  
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+			<li><a href="mailto:wolfson@uw.edu">wolfson@uw.edu</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/terabyte128">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">terabyte128</span>
+            </a>
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text"></p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
