@@ -5,13 +5,50 @@
     <description></description>
     <link>http://samwolfson.com/</link>
     <atom:link href="http://samwolfson.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 01 May 2016 01:07:30 -0700</pubDate>
-    <lastBuildDate>Sun, 01 May 2016 01:07:30 -0700</lastBuildDate>
+    <pubDate>Mon, 02 May 2016 15:01:00 -0700</pubDate>
+    <lastBuildDate>Mon, 02 May 2016 15:01:00 -0700</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
     
       <item>
+        <title>LaTeX may be my new favorite tool</title>
+        <description>&lt;p&gt;Let me start by saying that I’m not talking about latex, the rubber-like material. I’m talking about LaTeX (pronounced LATEK), the typesetting system. LaTeX is the preferred choice for those who have to write extended research papers, and for good reason: it provides a way to programmatically write really, &lt;em&gt;really&lt;/em&gt; nice looking documents, including built-in functionality for equations. It’s kind of like  HTML meets Microsoft Word-style output, but also better than both of those. Let me show you what I mean, using a cool online &lt;script type=&quot;math/tex&quot;&gt;\LaTeX&lt;/script&gt; library called &lt;a href=&quot;https://www.mathjax.org&quot;&gt;MathJax&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;equations&quot;&gt;Equations&lt;/h3&gt;
+&lt;p&gt;One of &lt;script type=&quot;math/tex&quot;&gt;\LaTeX&lt;/script&gt;’s best features is its excellent equation formatting abilities. For instance, if I want to write some complex math formula, I can just type:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$\int_{-3}^{7} 11x^2 + e^x + \pi\ dx$&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;and I end up with:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\int_{-3}^{7} 11x^2 + e^x + \pi\ dx&lt;/script&gt;
+
+&lt;p&gt;&lt;em&gt;Nice!&lt;/em&gt; So easy, and so pretty! Personally, I much prefer this type of layout to dealing with Word’s “Equation Editor.” Since &lt;script type=&quot;math/tex&quot;&gt;\LaTeX&lt;/script&gt; basically knows what I want, and it has built-in ideas for how math formulas should work, it can reliably generate nice-looking formulas without me needing to specify too much.&lt;/p&gt;
+
+&lt;h3 id=&quot;documents&quot;&gt;Documents&lt;/h3&gt;
+&lt;p&gt;Of course, it’s good for much more than math. I’ve started to write out all my documents using &lt;script type=&quot;math/tex&quot;&gt;\LaTeX&lt;/script&gt; instead of word, because it &lt;strong&gt;just works&lt;/strong&gt;&lt;sup&gt;TM&lt;/sup&gt;, and it has nice layout features for documents beyond equations (including a citation editor - which I haven’t personally used, but if it works like the rest of the language, I imagine it’s pretty nice).&lt;/p&gt;
+
+&lt;p&gt;The idea behind the language is that it probably knows better than you do, how your documents should look, so it provides you with tools for certain types of formatting – like title pages, sections, and subsections – and then decides how to format the layout in a clear, consistent manner. But of course, if you’re not satisfied, you can change things to your liking, it just takes a bit more effort. Still more fun than using something like Word, and probably with better results. For instance, I wrote my &lt;a href=&quot;/Samuel_Wolfson_Resume.pdf&quot;&gt;resume&lt;/a&gt; in &lt;script type=&quot;math/tex&quot;&gt;\LaTeX&lt;/script&gt;, and I really like the clear layout and formatting.&lt;/p&gt;
+
+&lt;h3 id=&quot;wrap-up&quot;&gt;Wrap-up&lt;/h3&gt;
+
+&lt;p&gt;Now, this isn’t intended to be a tutorial – there are &lt;a href=&quot;https://www.latex-tutorial.com/&quot;&gt;plenty&lt;/a&gt; &lt;a href=&quot;www.andy-roberts.net/misc/latex/&quot;&gt;of&lt;/a&gt; &lt;a href=&quot;https://www.tug.org/twg/mactex/tutorials/ltxprimer-1.0.pdf&quot;&gt;tutorials&lt;/a&gt; &lt;a href=&quot;https://en.wikibooks.org/wiki/LaTeX/Basics&quot;&gt;floating&lt;/a&gt; &lt;a href=&quot;http://www.cs.cornell.edu/info/misc/latex-tutorial/latex-home.html&quot;&gt;around&lt;/a&gt; on the Internet. But if you’re someone who frequently writes papers, or math proofs, and you don’t already have experience with &lt;script type=&quot;math/tex&quot;&gt;\LaTeX&lt;/script&gt;, then I highly recommend checking it out. As with all things, there is a bit of a learning curve, but there are plenty of resources and I think you’ll eventually find it to be a much more satisfying experience than a program like Microsoft Word.&lt;/p&gt;
+
+&lt;p&gt;For reference, I’ve been using &lt;a href=&quot;http://www.xm1math.net/texmaker/&quot;&gt;texmaker&lt;/a&gt;, which has built-in shortcuts to common commands, and &lt;a href=&quot;http://tug.org/mactex/&quot;&gt;MacTeX&lt;/a&gt;.&lt;/p&gt;
+
+&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;/script&gt;
+
+</description>
+        <pubDate>Mon, 02 May 2016 06:05:44 -0700</pubDate>
+        <link>http://samwolfson.com/2016/05/02/i-think-latex-may-be-my-new-favorite-thing.html</link>
+        <guid isPermaLink="true">http://samwolfson.com/2016/05/02/i-think-latex-may-be-my-new-favorite-thing.html</guid>
+        
+        
+      </item>
+    
+      <item>
         <title>Let&#39;s talk about floating point</title>
-        <description>&lt;p&gt;Ah, floating point: not just a swimming pool full of numbers!&lt;/p&gt;
+        <description>&lt;p title=&quot;This joke isn&#39;t just here for its own sake; for some reason, everything craps out if my static site generator attempts to format LaTeX in the post list page.&quot;&gt;Ah, floating point: not just a swimming pool full of numbers!&lt;/p&gt;
 
 &lt;p&gt;You may or may not be familiar with the somewhat convoluted way that computers deal with non-integer numbers (for instance, &lt;script type=&quot;math/tex&quot;&gt;1.25&lt;/script&gt;, or &lt;script type=&quot;math/tex&quot;&gt;6.022 * 10^{23}&lt;/script&gt;). I’m not sure how you really would have ended up here without having searched for something like “floating point,” so you probably already know at least a bit about how it works. But either way, I have a test on Monday, so I’m going to attempt to describe this standard as clearly as possible. (And in excruciating detail, woo!)&lt;/p&gt;
 
