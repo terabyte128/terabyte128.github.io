@@ -5,7 +5,7 @@ date: 2016-04-30 22:15:49
 categories:
 ---
 
-Ah, floating-point numbers. A useful idea, with a weird but necessary implementation.
+Ah, floating-point numbers. A useful idea; a weird but necessary implementation.
 
 You may or may not be familiar with the somewhat convoluted way that computers deal with non-integer numbers (for instance, $$1.25$$, or $$6.022 * 10^{23}$$). I'm not sure how you really would have ended up here without having searched for something like "floating point," so you probably already know at least a bit about how it works. But either way, I have a test on Monday, so I'm going to attempt to describe this standard as clearly as possible. (And in excruciating detail, woo!)
 
