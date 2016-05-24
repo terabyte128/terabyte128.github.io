@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Contact Me</title>
+  <title>Patient Fax Tracker</title>
   <meta name="description" content="">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://samwolfson.com/contact_me/">
+  <link rel="canonical" href="http://samwolfson.com/patient_fax_tracker/">
   <link rel="alternate" type="application/rss+xml" title="Sam Wolfson" href="http://samwolfson.com/feed.xml" />
   
   <script>
@@ -65,7 +65,7 @@
           
         
           
-          <a style="font-weight: bolder;" class="page-link" href="/contact_me/">Contact Me</a>
+          <a  class="page-link" href="/contact_me/">Contact Me</a>
           
         
           
@@ -83,15 +83,21 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Contact Me</h1>
+    <h1 class="post-title">Patient Fax Tracker</h1>
   </header>
 
   <article class="post-content">
-    <p>You can get in touch with me at <a href="mailto:wolfson@uw.edu">wolfson@uw.edu</a>.
-<br />
-I’m also on GitHub as <a href="https://github.com/terabyte128">terabyte128</a>.
-<br /><br />
-I’m located in the Seattle, WA area.</p>
+    <p>I worked with a dermatology practice to improve how they manage referrals.</p>
+
+<p>Under certain situations, patient referral information is faxed to the practice, but they cannot enter the patient’s information into their electronic medical record system until the patient actually calls in. They had been writing out lists of patients in word-processing software and printing them out every day, which is slow and unwieldy. So I designed a simple web application that allows them to enter patient information as faxes come in:</p>
+
+<p><a href="/img/faxtracker/add_patient.png"><img style="max-width: 500px;" alt="Entering patient information" src="/img/faxtracker/add_patient.png" /></a></p>
+
+<p>And then view all patients in a fully searchable list, so that when a patient does call in, whoever takes the call can easily find the patient’s name and cross-reference it with their ID in the electronic medical record system.</p>
+
+<p><a href="/img/faxtracker/full_screen.png"><img style="max-width: 500px;" alt="List view" src="/img/faxtracker/full_screen.png" /></a></p>
+
+<p>Finally, I installed a Raspberry Pi computer in the office to act as a server for the web application. This improves security by keeping all information on their internal network, as opposed to hosting the site somewhere on the Internet.</p>
 
   </article>
 
