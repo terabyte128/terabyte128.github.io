@@ -11,7 +11,7 @@ Under certain situations, patient referral information is faxed to the practice,
 
 <a href="/img/faxtracker/add_patient.png"><img style="max-width: 500px;" alt="Entering patient information" src="/img/faxtracker/add_patient.png"></a>
 
-And then view all patients in a fully searchable list, so that when a patient does call in, whoever takes the call can easily find the patient's name and cross-reference it with their ID in the electronic medical record system.
+And then view all patients in a fully searchable list, so that when a patient does call in, whoever takes the call can easily find the patient's name and cross-reference it with their ID in the electronic medical record system. The list also auto-updates when patient information is added or removed, ensuring that multiple people can use the app at once without worrying about refreshing the page whenever someone else makes a change.
 
 <a href="/img/faxtracker/full_screen.png"><img style="max-width: 500px;" alt="List view" src="/img/faxtracker/full_screen.png"></a>
 
