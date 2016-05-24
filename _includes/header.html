@@ -17,7 +17,7 @@
         <a {% if page.title == "Blog" %}style="font-weight: bolder;"{% endif %} class="page-link" href="{{ '/blog/' | prepend: site.baseurl }}">Blog</a>
 
         {% for a_page in site.html_pages %}
-          {% if a_page.title and a_page.title != "Blog" %}
+          {% if (a_page.title and a_page.title != "Blog") and a_page.hidden != true %}
           <a {% if page.title == a_page.title %}style="font-weight: bolder;"{% endif %} class="page-link" href="{{ a_page.url | prepend: site.baseurl }}">{{ a_page.title }}</a>
           {% endif %}
         {% endfor %}
