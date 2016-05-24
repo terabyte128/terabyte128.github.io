@@ -10,6 +10,7 @@ layout: default
     </header>
 
     <article class="post-content">
+	    <img align="left" src="/img/sam.jpg">
 	    <p>
         Welcome to my website. On this site, you may find interesting things about me, my various projects, and what I like to do in my spare time.
         I've got older projects archived in the <a href="/projects/">Projects</a> page, and I'll be <a href="/blog/">blogging</a> about current and ongoing projects as well.
