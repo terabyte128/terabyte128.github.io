@@ -4,10 +4,6 @@ title: Projects
 permalink: /projects/
 ---
 
-#### Electric Go-Kart
-
-In 6th grade, I bought a go-kart with the intention of converting it to electric. Through its many incarnations, it has taught me lots of important lessons about both mechanical and electrical systems. You can learn much, much more about this project at its own website, [myelectricgokart.com](http://www.myelectricgokart.com/){:target="_blank"}.
-
 #### FRC Scout
 
 For the FIRST robotics FRC competition, a large part of the competition is "scouting" teams to figure out how well they do in games, and how well they would compliment your team's strengths if you were in an alliance together. My friend and I created a website, [FRC Scout](http://frcscout.com/){:target="_blank"}, to make scouting teams much simpler and easier. It tracks data entered by various team members on various teams, and aggregates their data in a large database to create averages. These averages track the strengths and weaknesses of different teams, which makes it easier for other teams to see whether or not they should select a team for their alliance. It was super cool, and from it I learned a lot about web development. You can find the code [on GitHub](https://github.com/FIRST-4030/frc-scout){:target="_blank"} if you're so inclined. We used Python, with a framework called [Django](https://www.djangoproject.com){:target="_blank"}.
@@ -20,10 +16,15 @@ Eventually, TaskRabbit grew to also encompass a time clock, for logging hours, a
 
 #### Sloth Pages
 
-For my IB Computer Science dossier in junior year of high school, I approached my biology teacher to see if she would be interested in using a website to disseminate assignment and class information to her students, since the system that the school used at the time was slow, clunky, and unintuitive. She was interested, so I wrote the inital website using PHP and MySQL. Admittedly, it wasn't written very well, but it worked -- you can look at the source code [here](https://github.com/terabyte128/transfusion){:target="_blank"} if you're interested. The original is called *transfusion*, a jab to the Fusion Pages, the system used by Seattle Schools.
+For my IB Computer Science dossier in junior year of high school, I approached my biology teacher to see if she would be interested in using a website to disseminate assignment and class information to her students, since the system that the school used at the time was slow, clunky, and unintuitive. She was interested, so I wrote the initial website using PHP and MySQL. Admittedly, it wasn't written very well, but it worked -- you can look at the source code [here](https://github.com/terabyte128/transfusion){:target="_blank"} if you're interested. The original is called *transfusion*, a jab to the Fusion Pages, the system used by Seattle Schools.
 
-However, I had some free time my senior year, so I decided to rewrite the website using Django and Python, since I wanted a project and found Python to be a much better language. My teacher and I decided to call this new projet *Sloth Pages*. Sloth Pages is built upon the base of transfusion, but I designed it to be much clearer and easier to use. Furthermore, it's much more robust and mobile-friendly, and significantly less buggy. My teacher still uses it for some of her classes -- you can find the website at [slothpages.com](http://slothpages.com){:target="_blank"}.
+However, I had some free time my senior year, so I decided to rewrite the website using Django and Python, since I wanted a project and found Python to be a much better language. My teacher and I decided to call this new project *Sloth Pages*. Sloth Pages is built upon the base of transfusion, but I designed it to be much clearer and easier to use. Furthermore, it's much more robust and mobile-friendly, and significantly less buggy. My teacher still uses it for some of her classes -- you can find the website at [slothpages.com](http://slothpages.com){:target="_blank"}.
 
 #### Planda
 
-Planda is a simple homework management app that I wrote as an excuse to learn about jQuery Mobile and Django. It allows students to create courses, and assignments for each course. It generates lists of assignments organized by course and due date, and marks overdue assignments in red to give them special weight. I used it extensively throughtout my senior year of high school, as did some of my friends. Planda was designed to be very simple but satisfying to use -- for instance, checking off an assignment creates an animation where it slides up and away. It's hosted on Heroku [here](https://planda.herokuapp.com){:target="_blank"}.      
+Planda is a simple homework management app that I wrote as an excuse to learn about jQuery Mobile and Django. It allows students to create courses, and assignments for each course. It generates lists of assignments organized by course and due date, and marks overdue assignments in red to give them special weight. I used it extensively throughout my senior year of high school, as did some of my friends. Planda was designed to be very simple but satisfying to use -- for instance, checking off an assignment creates an animation where it slides up and away. It's hosted on Heroku [here](https://planda.herokuapp.com){:target="_blank"}.      
+
+
+#### Electric Go-Kart
+
+In 6th grade, I bought a go-kart with the intention of converting it to electric. Through its many incarnations, it has taught me lots of important lessons about both mechanical and electrical systems. You can learn much, much more about this project at its own website, [myelectricgokart.com](http://www.myelectricgokart.com/){:target="_blank"}.
