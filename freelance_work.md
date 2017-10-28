@@ -2,6 +2,7 @@
 layout: page
 title: "Freelance Work"
 permalink: /freelance_work/
+hidden: true
 ---
 ### Web Design
 

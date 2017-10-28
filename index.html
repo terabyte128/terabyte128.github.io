@@ -6,29 +6,21 @@ layout: default
   <div class="post">
 
     <header class="post-header">
-      <h1 class="post-title">Welcome!</h1>
+      <h1 class="post-title">Hi there!</h1>
     </header>
 
     <article class="post-content">
 	    <p>
-        Welcome to my website. On this site, you may find interesting things about me, my various projects, and what I like to do in my spare time.
-        I've got older projects archived in the <a href="/projects/">Projects</a> page, and I'll be <a href="/blog/">blogging</a> about current and ongoing projects as well.
+        My name is Sam Wolfson.
       </p>
       <p>
-        I offer various <a href="/freelance_work/">freelance work</a> related to small-scale computer and technology projects, including website and application development.
+        I studying for my bachelor's degree in <a href="https://www.cs.washington.edu" target="_blank">computer science</a> at the <a href="http://www.washington.edu" target="_blank">University of Washington</a>.
+      </p>
+      <p>
+        On this site, you may find interesting things about me, my various <a href='/projects'>projects</a>, and what I like to do <a href="/activities">in my spare time</a>. I also maintain an occasional <a href="/blog">blog</a> for topics I find interesting, or projects that I'm working on at the moment.
       </p>
       <p>
         You may also <a href="/Samuel_Wolfson_Resume.pdf">view my resume</a>.
-      </p>
-      <p>
-        <h3>Latest Posts</h3>
-        <ul>
-          {% for post in site.posts limit:3 %}
-          <li>
-            <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a> &mdash; <span>{{ post.date | date: "%b %-d, %Y" }}</span>
-          </li>
-          {% endfor %}
-        </ul>
       </p>
 
     </article>
