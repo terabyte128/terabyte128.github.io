@@ -4,7 +4,7 @@ title: Projects
 permalink: /projects/
 ---
 
-_For projects that I worked on in high school, see [here](/projects/high_school)._
+_For projects that I worked on in high school, see [here](/projects/high_school/)._
 
 This page (the one that you're currently looking at) will eventually serve as an archive for more recent projects I've worked on. But, for the time being, my [GitHub page](https://github.com/terabyte128) is a pretty good indication of what I'm up to at the moment. (Most of it is school work, though, and so won't be posted publicly.)
 

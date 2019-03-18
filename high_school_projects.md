@@ -1,7 +1,7 @@
 ---
 layout: page
 title: High School Projects
-permalink: /projects/high_school
+permalink: /projects/high_school/
 hidden: true
 ---
 
