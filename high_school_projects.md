@@ -30,4 +30,4 @@ Planda is a simple homework management app that I wrote as an excuse to learn ab
 
 #### Electric Go-Kart
 
-In 6th grade, I bought a go-kart with the intention of converting it to electric. Through its many incarnations, it has taught me lots of important lessons about both mechanical and electrical systems. You can learn much, much more about this project at its own website, [myelectricgokart.com](http://www.myelectricgokart.com/){:target="_blank"}.
+In 6th grade, I bought a go-kart with the intention of converting it to electric. Through its many incarnations, it has taught me lots of important lessons about both mechanical and electrical systems. You can learn much, much more about this project at its own website, [myelectricgokart.com](http://www.myelectricgokart.com/){:target="_blank"}. I have also archived the site [here](http://samwolfson.com/myelectricgokart-archive]{:target="_blank"} in case the old web host that I used when I was in middle school disappears.
