@@ -5,7 +5,7 @@ permalink: /projects/high_school/
 hidden: true
 ---
 
-This page serves as an archive for the projects that I worked on in high school.
+This page serves as an archive for the projects that I worked on in high school (or earlier).
 
 #### FRC Scout
 
