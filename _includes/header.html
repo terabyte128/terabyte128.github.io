@@ -14,7 +14,7 @@
       </a>
 
       <div class="trigger">
-        <a {% if page.title == "Blog" %}style="font-weight: bolder;"{% endif %} class="page-link" href="{{ '/blog/' | prepend: site.baseurl }}">Blog</a>
+        <!--<a {% if page.title == "Blog" %}style="font-weight: bolder;"{% endif %} class="page-link" href="{{ '/blog/' | prepend: site.baseurl }}">Blog</a> -->
 
         {% for a_page in site.html_pages %}
           {% if (a_page.title and a_page.title != "Blog") and a_page.hidden != true %}
