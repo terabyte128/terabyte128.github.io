@@ -14,6 +14,7 @@ My main academic interest at the moment is teaching. I've worked as a TA for the
 - [Computer Science Principles, Winter 2019](https://courses.cs.washington.edu/courses/cse120/19wi/)
 - [The Hardware/Software Interface, Spring 2019](https://courses.cs.washington.edu/courses/cse351/19sp/)
 - [Introduction to Compiler Construction, Autumn 2019](https://courses.cs.washington.edu/courses/cse401/19au/)
+- [Computer Security, Spring 2020 (online due to COVID)](https://courses.cs.washington.edu/courses/cse484/20sp)
 
 and I have been (or will be) the instructor of record for these courses:
 
