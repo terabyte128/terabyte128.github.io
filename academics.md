@@ -5,7 +5,7 @@ permalink: "/academics"
 ---
 
 
-I graduated with a master's degree in <a href="https://www.cs.washington.edu" target="_blank">computer science</a> at the <a href="http://www.washington.edu" target="_blank">University of Washington</a> in spring 2020.
+I graduated with a master's degree in <a href="https://www.cs.washington.edu" target="_blank">computer science</a> at the <a href="http://www.washington.edu" target="_blank">University of Washington</a> in summer 2020.
 
 My main academic interest at the moment is teaching. I've worked as a TA for these courses: 
 
